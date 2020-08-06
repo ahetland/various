@@ -1,0 +1,119 @@
+" this story was found on medium so I added my vimrc to match
+set ttyfast
+set showmode
+set showcmd
+set title
+set number
+set hidden  " This is what files look like
+set ffs=unix,dos,mac  " Update find path to search subdirectories
+set path=$PWD/**  " No backups
+set nobackup
+set nowritebackup
+set nowb
+set autochdir
+set background=dark
+
+set encoding=utf-8
+
+set noswapfile  " Keep lots of history/undo
+set undolevels=1000 " Files to ignore
+" Python
+set wildignore+=*.pyc,*.pyo,*/__pycache__/*
+" Erlang
+set wildignore+=*.beam
+" Temp files
+set wildignore+=*.swp,~*
+" Archives
+set wildignore+=*.zip,*.tar
+
+" color scheme he liked in his story
+set t_Co=256
+" colorscheme molokaiset 
+
+set colorcolumn=90
+highlight ColorColumn ctermbg=8 guibg=lightgrey
+highlight Normal ctermfg=grey ctermbg=237
+
+
+" Tab sanity
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+" Enable folding and remap folding to spacebar
+set foldmethod=manual
+" indent
+set foldlevel=2
+set nofoldenable
+set foldnestmax=10
+nnoremap <space> za
+
+" Show hidden characters, tabs, trailing whitespace
+set list
+set listchars=tab:→\ ,trail:·,nbsp:·
+
+" Different tab/space stops"
+autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+autocmd Filetype elm setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+autocmd Filetype html setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+
+" Remap escape
+" inoremap kj <Esc>
+" inoremap lk <Esc>
+" buffer list management
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+:map <F2> :setlocal spell! spelllang=en_us<CR>
+:map <F3> :setlocal spell! spelllang=de_de<CR>
+
+
+" netrw adustments 
+" remove the banner (so not need to use I)
+" width in percent
+let g:netrw_banner = 0
+" KJlet g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+let g:netrw_winsize = 25
+
+" augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+" augroup END
+
+
+
+" end of edit from story
+
+set nocompatible              " be iMproved, required
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=$HOME/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.viw'
+
+Plugin 'Vundle.vim'
+
+" Add plugins here
+
+Plugin 'elixir-editors/vim-elixir'
+
+Plugin 'slashmili/alchemist.vim'
+
+Plugin 'rust-lang/rust.vim'
+
+Plugin 'mattn/emmet-vim'
+
+Plugin 'elmcast/elm-vim'
+
+call vundle#end()            " required
+
+filetype plugin indent on    " required
+
+" PSQL 
+syntax on
+au BufRead /tmp/psql.edit.* set syntax=sql
